@@ -2,6 +2,8 @@ package com.sws.rainbow.todo.action;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +35,10 @@ public class TodoAction {
 	}
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String saveNew(@ModelAttribute Task task, BindingResult result) {
+	public String saveNew(@Valid @ModelAttribute Task task, BindingResult result, Model model) {
+		if(result.hasErrors()) {
+			return "todo/edit";
+		}
 		todoService.saveTask(task);
 		return "redirect:/todo/" + task.getId() + "/edit";
 	}	
@@ -46,14 +51,14 @@ public class TodoAction {
 	}	
 
 	@RequestMapping(value = "/{taskId}/edit", method = RequestMethod.GET)
-	public String initEdit(@PathVariable("taskId") long taskId,Model model) {
+	public String initEdit(@PathVariable("taskId") long taskId, Model model) {
 		Task task = todoService.findTask(taskId);
 		model.addAttribute("task",task);
 		return "todo/edit";
 	}
 	
 	@RequestMapping(value = "/{taskId}/edit", method = RequestMethod.POST)
-	public String saveEdit(@ModelAttribute Task task, BindingResult result) {
+	public String saveEdit(@Valid @ModelAttribute Task task, BindingResult result, Model model) {
 		todoService.saveTask(task);
 		return "redirect:/todo/" + task.getId() + "/edit";
 	}

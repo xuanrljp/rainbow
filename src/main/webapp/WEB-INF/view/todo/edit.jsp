@@ -6,7 +6,7 @@
 	<div class="row-fluid">
 		<div class="span9">
 			<form:form modelAttribute="task" method="POST" class="form-horizontal">
-			
+			<form:errors path="*" element="div" />
 			<div class="control-group">
 				<label class="control-label" for="url">NO:</label>
 				<div class="controls">

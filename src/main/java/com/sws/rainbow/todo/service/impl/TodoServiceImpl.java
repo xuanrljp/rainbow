@@ -37,7 +37,8 @@ public class TodoServiceImpl implements TodoService {
 			taskRepository.insert(task);
 		}
 	}
-
+	
+	@Transactional
 	public void removeTask(Long id) {
 		taskRepository.delete(id);
 	}

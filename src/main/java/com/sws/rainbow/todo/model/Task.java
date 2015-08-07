@@ -1,10 +1,25 @@
 package com.sws.rainbow.todo.model;
 
-public class Task {
+import java.io.Serializable;
+import java.util.Date;
 
-	private long id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+public class Task implements Serializable{
+
+	/**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@NotNull
+	@Min(10)
+	private Long id;
 
 	private String title;
+	
+	private Date endAt;
 	
 	public Task() {
 		
@@ -13,13 +28,15 @@ public class Task {
 	public Task(long id, String title) {
 		this.id = id;
 		this.title = title;
+		this.endAt = new Date();
 	}
 	
-	public long getId() {
+	
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -29,5 +46,13 @@ public class Task {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public Date getEndAt() {
+		return endAt;
+	}
+
+	public void setEndAt(Date endAt) {
+		this.endAt = endAt;
 	}
 }

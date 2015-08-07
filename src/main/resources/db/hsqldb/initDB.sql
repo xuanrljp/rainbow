@@ -2,5 +2,6 @@ DROP TABLE task IF EXISTS;
 
 CREATE TABLE task (
   id         INTEGER IDENTITY PRIMARY KEY,
-  title VARCHAR(255)
+  title VARCHAR(255),
+  endAt Date
 );

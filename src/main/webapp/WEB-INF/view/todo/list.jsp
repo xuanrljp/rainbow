@@ -14,6 +14,7 @@
 					<tr>
 						<th>NO</th>
 						<th>タイトル</th>
+						<th>終了日</th>
 						<th>アクション</th>
 					</tr>
 				</thead>
@@ -25,6 +26,7 @@
 							<c:url value="/todo/${task.id}/edit" var="url"/>
 	 						<a href="<c:out value='${url}'/>">${task.title}</a>
 						</td>
+						<td>${task.endAt}</td>
 						<td>
 							<c:url value="/todo/${task.id}/delete" var="delUrl"/>
 							<a class="btn btn-danger" href="<c:out value='${delUrl}'/>" role="button">削除</a>
